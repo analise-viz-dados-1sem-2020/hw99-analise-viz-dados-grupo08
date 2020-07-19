@@ -1,6 +1,6 @@
 Trabalho Final
 ================
-Gabriela Silva, Guilherme Amalisis, Melissa Dias e Mylena Dias
+Gabriela Silva, Guilherme Amasilis, Melissa Dias e Mylena Dias
 18/07/2020
 
 ### Introdução
@@ -27,8 +27,8 @@ As perguntas que orientarão a análise dos dados são:
     duas modalidades de ensino (a distância/presencial)?
 
 4)  Existe alguma correlação entre a proporção de participantes no exame
-    (concluintes participantes/concluintes inscritos) e o conceito Enade
-    faixa?
+    (concluintes participantes/concluintes inscritos) e o Conceito Enade
+    Faixa?
 
 <!-- end list -->
 
@@ -53,8 +53,8 @@ As perguntas que orientarão a análise dos dados são:
     ##  $ Nota Bruta - CE                 : num [1:8821] 50.3 31 54.8 41.9 44.9 ...
     ##  $ Nota Padronizada - CE           : num [1:8821] 4.02 1.84 3.46 3.25 3.64 ...
     ##  $ Conceito Enade (Contínuo)       : num [1:8821] 4.2 2.18 3.41 3.53 3.68 ...
-    ##  $ Conceito Enade (Faixa)          : chr [1:8821] "5" "3" "4" "4" ...
-    ##  $ Observação                      : logi [1:8821] NA NA NA NA NA NA ...
+    ##  $ Conceito Enade (Faixa)          : num [1:8821] 5 3 4 4 4 3 5 5 4 5 ...
+    ##  $ Observação                      : chr [1:8821] NA NA NA NA ...
 
 ### Descrição da base de dados
 

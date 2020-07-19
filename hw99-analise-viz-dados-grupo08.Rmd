@@ -1,6 +1,6 @@
 ---
 title: "Trabalho Final"
-author: "Gabriela Silva, Guilherme Amalisis, Melissa Dias e Mylena Dias"
+author: "Gabriela Silva, Guilherme Amasilis, Melissa Dias e Mylena Dias"
 date: "18/07/2020"
 output: github_document
 ---
@@ -18,15 +18,14 @@ As perguntas que orientarão a análise dos dados são:
 
 3) Sob a perspectiva da distribuição do Conceito Enade Faixa no curso de administração pública no país, existe alguma diferença entre as duas modalidades de ensino (a distância/presencial)?
 
-4) Existe alguma correlação entre a proporção de participantes no exame (concluintes participantes/concluintes inscritos) e o conceito Enade faixa?
+4) Existe alguma correlação entre a proporção de participantes no exame (concluintes participantes/concluintes inscritos) e o Conceito Enade Faixa?
 
 ```{r enade, include=FALSE}
 
 library(readxl)
 
-df_enade <- read_excel("resultados_conceito_enade_2018.xlsx", sheet = 1)
+df_enade <- read_excel("hw99-analise-viz-dados-grupo08_files/resultados_conceito_enade_2018.xlsx", col_types = c("numeric", "numeric", "text", "numeric", "text", "text", "text", "text", "numeric", "text", "numeric", "text", "text", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "text"))
 
-str(df_enade)
 
 ```
 
