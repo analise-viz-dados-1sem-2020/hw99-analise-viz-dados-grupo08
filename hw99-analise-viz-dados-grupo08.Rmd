@@ -1,0 +1,60 @@
+---
+title: "Trabalho Final"
+author: "Gabriela Silva, Guilherme Amalisis, Melissa Dias e Mylena Dias"
+date: "18/07/2020"
+output: github_document
+---
+
+### Introdução
+
+O presente trabalho objetiva analisar os dados relacionados ao [**Exame Nacional de Desempenho dos Estudantes (Enade)**](http://portal.inep.gov.br/enade) do ano de 2018. Esse se configura como um dos indicadores que integra o Sistema Nacional de Avaliação da Educação Superior (Sinaes), uma vez que ele avalia os cursos por meio dos desempenhos dos estudantes e se constitui como um dos importantes insumos para a construção de um panorama da qualidade dos cursos e das instituições de educação superior brasileiras.
+
+
+As perguntas que orientarão a análise dos dados são:
+
+1) Dentre as diferentes Organizações Acadêmicas observadas, qual possui maior média de Conceito Enade Contínuo?
+
+2) Considerando a Universidade Federal de Minas Gerais, como se dá a distribuição do Conceito Enade Faixa para os cursos avaliados?
+
+3) Sob a perspectiva da distribuição do Conceito Enade Faixa no curso de administração pública no país, existe alguma diferença entre as duas modalidades de ensino (a distância/presencial)?
+
+4) Existe alguma correlação entre a proporção de participantes no exame (concluintes participantes/concluintes inscritos) e o conceito Enade faixa?
+
+```{r enade, include=FALSE}
+
+library(readxl)
+
+df_enade <- read_excel("resultados_conceito_enade_2018.xlsx", sheet = 1)
+
+str(df_enade)
+
+```
+
+
+```{r visualizar, echo=FALSE}
+
+str(df_enade)
+
+```
+
+### Descrição da base de dados
+
+A base de dados utilizada é composta por 22 variáveis e se refere aos resultados do Conceito Enade de 2018 relativos ao ano III de avaliação, o qual abarca cursos das seguintes áreas de conhecimento: 
+
+- Cursos de bacharelado nas Áreas de Conhecimento Ciências Sociais Aplicadas e áreas afins;
+- Cursos de bacharelado nas Áreas de Conhecimento Ciências Humanas e áreas afins que não tenham cursos também avaliados no âmbito das licenciaturas;
+- Cursos Superiores de Tecnologia nas áreas de Gestão e Negócios, Apoio Escolar, Hospitalidade e Lazer, Produção Cultural e Design.
+
+(INEP, 2019)
+
+Além disso, a presente base de dados fornece informações que abarcam a área de avaliação, o nome da Instituição de Ensino Superior (IES), o município do curso, a organização acadêmica, o Conceito Enade Faixa, dentre outras importantes dimensões e métricas para a conformação do panorama de qualidade do Ensino Superior no Brasil.
+
+### Análise Exploratória
+
+
+### Considerações finais
+
+
+### Referências 
+
+Brasil. Ministério da Educação - Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP). **Exame Nacional de Desempenho dos Estudantes (Enade)**. Disponível em: <http://portal.inep.gov.br/enade>. Acesso em: 18 jul. 2020.
