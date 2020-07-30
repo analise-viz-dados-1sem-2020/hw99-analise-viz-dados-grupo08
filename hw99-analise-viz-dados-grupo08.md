@@ -80,7 +80,43 @@ panorama de qualidade do Ensino Superior no Brasil.
 
 ### Análise Exploratória
 
+A segunda pergunta analisada questiona acerca de como se dá a
+distribuição do Conceito Enade (Faixa) para os cursos avaliados da
+Universidade Federal de Minas Gerais (UFMG). O gráfico obtido a partir
+da manipulação dos dados encontra-se a seguir:
+
+![Figura 2: Conceito Enade UFMG](/cloud/project/distribuicao_ufmg.jpg)
+Figura 2: Conceito Enade UFMG
+
+A base de dados apresenta o Conceito Enade (Faixa) para doze diferentes
+áreas de avaliação: Administração (Campus Belo Horizonte),
+Administração (Campus Montes Claros), Administração Pública, Ciências
+Contábeis, Ciências Econômicas, Comunicação Social – Jornalismo,
+Comunicação Social – Publicidade e Propaganda, Design, Direito,
+Psicologia, Relações Internacionais e Turismo. Destes, 8 cursos (66,67%)
+obtiveram nota máxima (5) no conceito Enade, enquanto os outros 4 cursos
+(33,33%) obtiveram nota 4. Dessa forma, observa-se que a UFMG alcançou
+notas altas na avaliação realizada.
+
 ### Considerações finais
+
+No dataframe analisado, existem dois cursos com o nome Administração na
+UFMG, diferenciando-se pelos campus em que são ofertados (um em Belo
+Horizonte e outro em Montes Claros). Nesse sentido, ao realizar a
+análise da questão 2, a plotagem do gráfico entendia que ambos os
+valores de conceito Enade para Adminstração se referiam a apenas uma
+área de atuação, levando à soma dos dois conceitos Enade na plotagem do
+gráfico. Esse erro foi corrigido alterando-se o nome do curso de
+Adminstração de Montes Claros, especificando que este era seu campus de
+oferta.
+
+Uma outra dificuldade encontrada na questão 2 refere-se ao tamanho dos
+valores do eixo x – área de atuação – após a plotagem do gráfico. Por se
+tratar de valores em caracteres, ao serem plotados automaticamente,
+acabavam se sobrepondo uns aos outros, impedindo a visualização dos
+valores do eixo x. Assim, realizou-se a mudança na orientação dos
+valores do eixo x, dispondo-os na vertical, além de reduzir o tamanho de
+sua fonte, de modo a permitir a visualização correta do gráfico.
 
 ### Referências
 
