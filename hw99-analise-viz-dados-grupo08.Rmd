@@ -42,13 +42,6 @@ df_ufmg %>%
 
 ```
 
-
-```{r visualizar, echo=FALSE}
-
-str(df_enade)
-
-```
-
 ### Descrição da base de dados
 
 A base de dados utilizada é composta por 22 variáveis e se refere aos resultados do Conceito Enade de 2018 relativos ao ano III de avaliação, o qual abarca cursos das seguintes áreas de conhecimento: 
@@ -61,8 +54,20 @@ A base de dados utilizada é composta por 22 variáveis e se refere aos resultad
 
 Além disso, a presente base de dados fornece informações que abarcam a área de avaliação, o nome da Instituição de Ensino Superior (IES), o município do curso, a organização acadêmica, o Conceito Enade Faixa, dentre outras importantes dimensões e métricas para a conformação do panorama de qualidade do Ensino Superior no Brasil.
 
+Vale ressaltar os parâmetros de conversão da nota dos concluintes no Enade do curso de graduação (NCc) em Conceito Enade Faixa:
+
+O **conceito 1** do Enade Faixa diz respeito ao intervalo 0 ≤ NCc < 0,945 do contínuo;
+O **conceito 2** do Enade Faixa diz respeito ao intervalo 0,945 ≤ NCc < 1,945 do contínuo;
+O **conceito 3** do Enade Faixa diz respeito ao intervalo 1,945 ≤ NCc < 2,945 do contínuo;      O **conceito 4** do Enade Faixa diz respeito ao intervalo 2,945 ≤ NCc < 3,945 do contínuo;
+O **conceito 5** do Enade Faixa diz respeito ao intervalo 3,945 ≤ NCc ≤ 5 do contínuo.
+                      
+(INEP, 2018)
+
+
 ### Análise Exploratória
-A segunda pergunta analisada questiona acerca de como se dá a distribuição do Conceito Enade (Faixa) para os cursos avaliados da Universidade Federal de Minas Gerais (UFMG).
+
+
+A **segunda pergunta** analisada questiona acerca de como se dá a distribuição do Conceito Enade (Faixa) para os cursos avaliados da Universidade Federal de Minas Gerais (UFMG).
 O gráfico obtido a partir da manipulação dos dados encontra-se a seguir:
 
 ![Figura 2: Conceito Enade UFMG](/cloud/project/distribuicao_ufmg.jpg)
@@ -70,10 +75,63 @@ Figura 2: Conceito Enade UFMG
 
 A base de dados apresenta o Conceito Enade (Faixa) para doze diferentes áreas de avaliação: Administração (Campus Belo Horizonte), Administração (Campus Montes Claros), Administração Pública, Ciências Contábeis, Ciências Econômicas, Comunicação Social – Jornalismo, Comunicação Social – Publicidade e Propaganda, Design, Direito, Psicologia, Relações Internacionais e Turismo. Destes, 8 cursos (66,67%) obtiveram nota máxima (5) no conceito Enade, enquanto os outros 4 cursos (33,33%) obtiveram nota 4. Dessa forma, observa-se que a UFMG alcançou notas altas na avaliação realizada.
 
+
+A **quarta pergunta** diz respeito à investigação se existe alguma correlação entre a proporção de participantes no exame (concluintes participantes/concluintes inscritos) e o Conceito Enade Faixa.
+O gráfico a seguir objetiva responder tal questionamento:
+
+```{r pergunta4, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(ggplot2)
+library(tidyverse)
+
+df_enade <- df_enade %>% 
+  mutate(prop_participantes = `Nº  de Concluintes Participantes`/`Nº de Concluintes Inscritos`*100) 
+
+df_enade %>% 
+  ggplot(aes(x = `Conceito Enade (Faixa)`, y = prop_participantes)) +
+  geom_point() +
+  labs(x = "Conceito Enade Faixa", 
+       y = "Percentual de participantes",
+       title = "Figura 4: Percentual de participação e Conceito Enade Faixa")
+
+```
+
+Pode-se observar que essa visualização apresenta alguns problemas, uma vez que o Conceito Enade Faixa não envolve números decimais, o que acarreta a concentração dos pontos na linha verticalmente. Entretanto, pode-se observar que um menor percentual de participantes (entre 0% e 25%) não está, necessariamente, apenas relacionado a notas baixas como a nota 1. Nota-se que os menores percentuais de participação estão associados às notas 2, 3 e 4 com destaque para a 3 e a 4 (maiores concentrações de pontos abaixo de 25%)
+
+Com o objetivo de melhorar a visualização e tentar extrair mais informações dos dados, abaixo se encontra outro gráfico que não estava no escopo inicial das perguntas, porém foi uma alternativa encontrata visando compreender melhor os dados. Nesse caso, foi utilizado o Conceito Enade Contínuo como um dos eixos.
+
+```{r pergunta4.1, echo=FALSE, warning=FALSE, message=FALSE}
+
+df_enade %>% 
+  ggplot(aes(x = `Conceito Enade (Contínuo)`, y = prop_participantes)) +
+  geom_point() +
+  labs(x = "Conceito Enade Contínuo", 
+       y = "Percentual de participantes",
+       title = "Figura 5: Proporção de participantes e Conceito Enade Contínuo")
+```
+
+Nesse gráfico, o que se pode perceber é a maior concentração dos pontos entre os Conceitos 1 e 3 e acima do percentual de 75% de participação. Dos Conteitos 3 a 4 também há elevada concentração de pontos, porém em menor medida comparado ao intervalo de 1 a 3, de modo que uma das razões que pode estar relacionada à maior quantidade de pontos estarem entre os Conceitos 1 a 3 seria o fato da maioria dos cursos obterem notas nesse intervalo. Além disso, nota-se que há cursos avaliados em todo o intervalo do Conceito Enade Contínuo.
+
+```{r, pergunra4.2, echo=FALSE, message=FALSE, warning=FALSE}
+
+df_enade %>% 
+  ggplot(aes(x = `Conceito Enade (Contínuo)`, y = prop_participantes)) +
+  geom_point() +
+  facet_wrap("`Organização Acadêmica`") +
+  labs(x = "Conceito Enade Contínuo", 
+       y = "Percentual de participantes",
+       title = "Figura 5.1: Participação e Enade Contínuo por Organização Acadêmica")
+```
+
+Esse gráfico também não estava envolvido nas perguntas iniciais, mas devido à possibilidade de abordar essa questão de diversos modos, tal visualização foi construída. O que se pode perceber a partir dessa dessa é que, em geral, faculdade e centro universitário possuem mais pontos em menores percentuais de participação. Vale ressaltar que os Institutos Federais de Educação, Ciência e Tecnologia e os Centros Federais de Educação Tecnológica existem em menor quantidade comparada às outras formas de organização acadêmica além de apresentarem maiores níveis de participação, principalmente no caso dos segundos.
+
+
 ### Considerações finais
 No dataframe analisado, existem dois cursos com o nome Administração na UFMG, diferenciando-se pelos campus em que são ofertados (um em Belo Horizonte e outro em Montes Claros). Nesse sentido, ao realizar a análise da questão 2, a plotagem do gráfico entendia que ambos os valores de conceito Enade para Adminstração se referiam a apenas uma área de atuação, levando à soma dos dois conceitos Enade na plotagem do gráfico. Esse erro foi corrigido alterando-se o nome do curso de Adminstração de Montes Claros, especificando que este era seu campus de oferta. 
 
 Uma outra dificuldade encontrada na questão 2 refere-se ao tamanho dos valores do eixo x – área de atuação – após a plotagem do gráfico. Por se tratar de valores em caracteres, ao serem plotados automaticamente, acabavam se sobrepondo uns aos outros, impedindo a visualização dos valores do eixo x. Assim, realizou-se a mudança na orientação dos valores do eixo x, dispondo-os na vertical, além de reduzir o tamanho de sua fonte, de modo a permitir a visualização correta do gráfico.
+
+Um problema encontrado na resolução da questão 4 diz respeito à utilização do Conceito Enade Faixa no primeiro gráfico. Desse modo, visando superar esse obstáculo, foi construído outro gráfico com o Conceito Enade Contínuo que, devido ao elevado número de cursos e universidades avaliados, a visualização apresentou grande quantidade de pontos concentrados em determinado intervalo. Tal pergunta ainda poderia se desdobrar, caso fosse o objetivo, no sentido de verificar, especificamente, o cenário de uma universidade específica, curso ou organização acadêmica, por exemplo. Sendo assim, foi escolhida mais uma forma de visualização por organização acadêmica, porém vale ressaltar que várias são as possibilidades de se explorar tais dados.
 
 ### Referências 
 

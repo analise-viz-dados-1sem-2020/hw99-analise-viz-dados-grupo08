@@ -30,32 +30,6 @@ As perguntas que orientarão a análise dos dados são:
     (concluintes participantes/concluintes inscritos) e o Conceito Enade
     Faixa?
 
-<!-- end list -->
-
-    ## tibble [8,821 × 22] (S3: tbl_df/tbl/data.frame)
-    ##  $ Ano                             : num [1:8821] 2018 2018 2018 2018 2018 ...
-    ##  $ Código da Área                  : num [1:8821] 2 13 38 22 1 22 13 38 81 1 ...
-    ##  $ Área de Avaliação               : chr [1:8821] "DIREITO" "CIÊNCIAS ECONÔMICAS" "SERVIÇO SOCIAL" "CIÊNCIAS CONTÁBEIS" ...
-    ##  $ Código da IES                   : num [1:8821] 1 1 1 1 1 1 2 2 2 2 ...
-    ##  $ Nome da IES                     : chr [1:8821] "UNIVERSIDADE FEDERAL DE MATO GROSSO" "UNIVERSIDADE FEDERAL DE MATO GROSSO" "UNIVERSIDADE FEDERAL DE MATO GROSSO" "UNIVERSIDADE FEDERAL DE MATO GROSSO" ...
-    ##  $ Sigla da IES                    : chr [1:8821] "UFMT" "UFMT" "UFMT" "UFMT" ...
-    ##  $ Organização Acadêmica           : chr [1:8821] "Universidade" "Universidade" "Universidade" "Universidade" ...
-    ##  $ Categoria Administrativa        : chr [1:8821] "Pessoa Jurídica de Direito Público - Federal" "Pessoa Jurídica de Direito Público - Federal" "Pessoa Jurídica de Direito Público - Federal" "Pessoa Jurídica de Direito Público - Federal" ...
-    ##  $ Código do Curso                 : num [1:8821] 1 2 7 8 13 21 122 126 128 145 ...
-    ##  $ Modalidade de Ensino            : chr [1:8821] "Educação Presencial" "Educação Presencial" "Educação Presencial" "Educação Presencial" ...
-    ##  $ Código do Município             : num [1:8821] 5103403 5103403 5103403 5103403 5103403 ...
-    ##  $ Município do Curso              : chr [1:8821] "CUIABA" "CUIABA" "CUIABA" "CUIABA" ...
-    ##  $ Sigla da UF                     : chr [1:8821] "MT" "MT" "MT" "MT" ...
-    ##  $ Nº de Concluintes Inscritos     : num [1:8821] 82 29 32 75 122 54 113 91 158 274 ...
-    ##  $ Nº  de Concluintes Participantes: num [1:8821] 72 23 22 66 101 49 92 81 134 189 ...
-    ##  $ Nota Bruta - FG                 : num [1:8821] 68.4 57.6 48.8 54.4 53.4 ...
-    ##  $ Nota Padronizada - FG           : num [1:8821] 4.73 3.2 3.27 4.36 3.81 ...
-    ##  $ Nota Bruta - CE                 : num [1:8821] 50.3 31 54.8 41.9 44.9 ...
-    ##  $ Nota Padronizada - CE           : num [1:8821] 4.02 1.84 3.46 3.25 3.64 ...
-    ##  $ Conceito Enade (Contínuo)       : num [1:8821] 4.2 2.18 3.41 3.53 3.68 ...
-    ##  $ Conceito Enade (Faixa)          : num [1:8821] 5 3 4 4 4 3 5 5 4 5 ...
-    ##  $ Observação                      : chr [1:8821] NA NA NA NA ...
-
 ### Descrição da base de dados
 
 A base de dados utilizada é composta por 22 variáveis e se refere aos
@@ -78,9 +52,22 @@ município do curso, a organização acadêmica, o Conceito Enade Faixa,
 dentre outras importantes dimensões e métricas para a conformação do
 panorama de qualidade do Ensino Superior no Brasil.
 
+Vale ressaltar os parâmetros de conversão da nota dos concluintes no
+Enade do curso de graduação (NCc) em Conceito Enade Faixa:
+
+O **conceito 1** do Enade Faixa diz respeito ao intervalo 0 ≤ NCc \<
+0,945 do contínuo; O **conceito 2** do Enade Faixa diz respeito ao
+intervalo 0,945 ≤ NCc \< 1,945 do contínuo; O **conceito 3** do Enade
+Faixa diz respeito ao intervalo 1,945 ≤ NCc \< 2,945 do contínuo; O
+**conceito 4** do Enade Faixa diz respeito ao intervalo 2,945 ≤ NCc \<
+3,945 do contínuo; O **conceito 5** do Enade Faixa diz respeito ao
+intervalo 3,945 ≤ NCc ≤ 5 do contínuo.
+
+(INEP, 2018)
+
 ### Análise Exploratória
 
-A segunda pergunta analisada questiona acerca de como se dá a
+A **segunda pergunta** analisada questiona acerca de como se dá a
 distribuição do Conceito Enade (Faixa) para os cursos avaliados da
 Universidade Federal de Minas Gerais (UFMG). O gráfico obtido a partir
 da manipulação dos dados encontra-se a seguir:
@@ -97,6 +84,51 @@ Psicologia, Relações Internacionais e Turismo. Destes, 8 cursos (66,67%)
 obtiveram nota máxima (5) no conceito Enade, enquanto os outros 4 cursos
 (33,33%) obtiveram nota 4. Dessa forma, observa-se que a UFMG alcançou
 notas altas na avaliação realizada.
+
+A **quarta pergunta** diz respeito à investigação se existe alguma
+correlação entre a proporção de participantes no exame (concluintes
+participantes/concluintes inscritos) e o Conceito Enade Faixa. O gráfico
+a seguir objetiva responder tal questionamento:
+
+![](hw99-analise-viz-dados-grupo08_files/figure-gfm/pergunta4-1.png)<!-- -->
+
+Pode-se observar que essa visualização apresenta alguns problemas, uma
+vez que o Conceito Enade Faixa não envolve números decimais, o que
+acarreta a concentração dos pontos na linha verticalmente. Entretanto,
+pode-se observar que um menor percentual de participantes (entre 0% e
+25%) não está, necessariamente, apenas relacionado a notas baixas como a
+nota 1. Nota-se que os menores percentuais de participação estão
+associados às notas 2, 3 e 4 com destaque para a 3 e a 4 (maiores
+concentrações de pontos abaixo de 25%)
+
+Com o objetivo de melhorar a visualização e tentar extrair mais
+informações dos dados, abaixo se encontra outro gráfico que não estava
+no escopo inicial das perguntas, porém foi uma alternativa encontrata
+visando compreender melhor os dados. Nesse caso, foi utilizado o
+Conceito Enade Contínuo como um dos eixos.
+
+![](hw99-analise-viz-dados-grupo08_files/figure-gfm/pergunta4.1-1.png)<!-- -->
+
+Nesse gráfico, o que se pode perceber é a maior concentração dos pontos
+entre os Conceitos 1 e 3 e acima do percentual de 75% de participação.
+Dos Conteitos 3 a 4 também há elevada concentração de pontos, porém em
+menor medida comparado ao intervalo de 1 a 3, de modo que uma das razões
+que pode estar relacionada à maior quantidade de pontos estarem entre os
+Conceitos 1 a 3 seria o fato da maioria dos cursos obterem notas nesse
+intervalo. Além disso, nota-se que há cursos avaliados em todo o
+intervalo do Conceito Enade Contínuo.
+
+![](hw99-analise-viz-dados-grupo08_files/figure-gfm/pergunra4.2-1.png)<!-- -->
+
+Esse gráfico também não estava envolvido nas perguntas iniciais, mas
+devido à possibilidade de abordar essa questão e diversos modos, tal
+visualização foi construída. O que se pode perceber a partir dessa dessa
+é que, em geral, faculdade e centro universitário possuem mais pontos em
+menores percentuais de participação. Vale ressaltar que os Institutos
+Federais de Educação, Ciência e Tecnologia e os Centros Federais de
+Educação Tecnológica existem em menor quantidade comparada às outras
+formas de organização acadêmica além de apresentarem maiores níveis de
+participação, principalmente no caso do segundo.
 
 ### Considerações finais
 
@@ -117,6 +149,18 @@ acabavam se sobrepondo uns aos outros, impedindo a visualização dos
 valores do eixo x. Assim, realizou-se a mudança na orientação dos
 valores do eixo x, dispondo-os na vertical, além de reduzir o tamanho de
 sua fonte, de modo a permitir a visualização correta do gráfico.
+
+Um problema encontrado na resolução da questão 4 diz respeito à
+utilização do Conceito Enade Faixa no primeiro gráfico. Desse modo,
+visando superar esse obstáculo, foi construído outro gráfico com o
+Conceito Enade Contínuo que, devido ao elevado número de cursos e
+universidades avaliados, a visualização apresentou grande quantidade de
+pontos concentrados em determinado intervalo. Tal pergunta ainda poderia
+se desdobrar, caso fosse o objetivo, no sentido de verificar,
+especificamente, o cenário de uma universidade específica, curso ou
+organização acadêmica, por exemplo. Sendo assim, foi escolhida mais uma
+forma de visualização por organização acadêmica, porém vale ressaltar
+que várias são as possibilidades de se explorar tais dados.
 
 ### Referências
 
