@@ -46,12 +46,6 @@ o qual abarca cursos das seguintes áreas de conhecimento:
 
 (INEP, 2019)
 
-Além disso, a presente base de dados fornece informações que abarcam a
-área de avaliação, o nome da Instituição de Ensino Superior (IES), o
-município do curso, a organização acadêmica, o Conceito Enade Faixa,
-dentre outras importantes dimensões e métricas para a conformação do
-panorama de qualidade do Ensino Superior no Brasil.
-
 Vale ressaltar os parâmetros de conversão da nota dos concluintes no
 Enade do curso de graduação (NCc) em Conceito Enade Faixa:
 
@@ -65,7 +59,33 @@ intervalo 3,945 ≤ NCc ≤ 5 do contínuo.
 
 (INEP, 2018)
 
+Além disso, a presente base de dados fornece informações que abarcam a
+área de avaliação, o nome da Instituição de Ensino Superior (IES), o
+município do curso, a organização acadêmica, o Conceito Enade Faixa,
+dentre outras importantes dimensões e métricas para a conformação do
+panorama de qualidade do Ensino Superior no Brasil.
+
 ### Análise Exploratória
+
+A **primeira pergunta** objetiva verificar qual das diferentes
+organizações acadêmicas observadas possui maior média de Conceito
+Enade Contínuo. Para isso foi construído o gráfico a seguir:
+
+![](hw99-analise-viz-dados-grupo08_files/figure-gfm/organizaçãoacademica-1.png)<!-- -->
+
+Figura 1: Média do Enade Contínuo por organização acadêmica
+
+A partir da visualização acima, percebeu-se que a organização acadêmica
+que possui maior média de Conceito Enade Contínuo é **Centro Federal de
+Educação Tecnológica (aproximamente 4.5)** seguida em ordem descrescente
+dessa mesma média por: Instituto Federal de Educação, Ciência e
+Tecnologia (3); Universidade (2,7); Centro Universitário (2,4);
+Faculdade (2,2).
+
+É importante destacar que as duas primeiras organizações acadêmicas com
+maiores médias apresentam uma quantidade de cursos avaliados bem menor
+que as outras 3 restantes. Isso, ao longo da análise, principalmente na
+pergunta 4, será retratado de modo mais evidente.
 
 A **segunda pergunta** analisada questiona acerca de como se dá a
 distribuição do Conceito Enade (Faixa) para os cursos avaliados da
@@ -92,6 +112,8 @@ a seguir objetiva responder tal questionamento:
 
 ![](hw99-analise-viz-dados-grupo08_files/figure-gfm/pergunta4-1.png)<!-- -->
 
+Figura 4: Percentual de participação e Conceito Enade Faixa
+
 Pode-se observar que essa visualização apresenta alguns problemas, uma
 vez que o Conceito Enade Faixa não envolve números decimais, o que
 acarreta a concentração dos pontos na linha verticalmente. Entretanto,
@@ -109,9 +131,11 @@ Conceito Enade Contínuo como um dos eixos.
 
 ![](hw99-analise-viz-dados-grupo08_files/figure-gfm/pergunta4.1-1.png)<!-- -->
 
+Figura 5: Proporção de participantes e Conceito Enade Contínuo
+
 Nesse gráfico, o que se pode perceber é a maior concentração dos pontos
 entre os Conceitos 1 e 3 e acima do percentual de 75% de participação.
-Dos Conteitos 3 a 4 também há elevada concentração de pontos, porém em
+Dos Conceitos 3 a 4 também há elevada concentração de pontos, porém em
 menor medida comparado ao intervalo de 1 a 3, de modo que uma das razões
 que pode estar relacionada à maior quantidade de pontos estarem entre os
 Conceitos 1 a 3 seria o fato da maioria dos cursos obterem notas nesse
@@ -120,17 +144,33 @@ intervalo do Conceito Enade Contínuo.
 
 ![](hw99-analise-viz-dados-grupo08_files/figure-gfm/pergunra4.2-1.png)<!-- -->
 
+Figura 5.1: Participação e Enade Contínuo por Organização Acadêmica
+
 Esse gráfico também não estava envolvido nas perguntas iniciais, mas
-devido à possibilidade de abordar essa questão e diversos modos, tal
-visualização foi construída. O que se pode perceber a partir dessa dessa
-é que, em geral, faculdade e centro universitário possuem mais pontos em
+devido à possibilidade de abordar essa questão de diversos modos, tal
+visualização foi construída. O que se pode perceber a partir dessa é
+que, em geral, faculdade e centro universitário possuem mais pontos em
 menores percentuais de participação. Vale ressaltar que os Institutos
 Federais de Educação, Ciência e Tecnologia e os Centros Federais de
 Educação Tecnológica existem em menor quantidade comparada às outras
 formas de organização acadêmica além de apresentarem maiores níveis de
-participação, principalmente no caso do segundo.
+participação, principalmente no caso dos segundos.
 
 ### Considerações finais
+
+No âmbito da análise exploratória dos dados, algumas observações,
+limitações e alternativas foram encontradas, de modo que, em cada
+pergunta, objetivou-se permitir as visualizações propostas por meio das
+perguntas bem como extrair informações relevantes com os dados
+disponíveis.
+
+Em relação à pergunta 1, a primeira visualização gerada apresentou
+problemas, uma vez que, com exceção de uma organização acadêmica, as
+outras retornaram NA para a média do Conceito Enade Contínuo. Isso
+aconteceu, provavelmente, devido a células em branco de modo que, por
+meio do summarise, a média não era calculada. Entretanto, foi possível
+resolver essa questão retirando da conta os NAs. Assim foi possível
+apresentar tal visualização.
 
 No dataframe analisado, existem dois cursos com o nome Administração na
 UFMG, diferenciando-se pelos campus em que são ofertados (um em Belo
