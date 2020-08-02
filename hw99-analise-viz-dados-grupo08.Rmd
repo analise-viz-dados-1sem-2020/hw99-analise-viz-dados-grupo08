@@ -26,20 +26,6 @@ library(readxl)
 
 df_enade <- read_excel("hw99-analise-viz-dados-grupo08_files/resultados_conceito_enade_2018.xlsx", col_types = c("numeric", "numeric", "text", "numeric", "text", "text", "text", "text", "numeric", "text", "numeric", "text", "text", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "text"))
 
-#2) Considerando a Universidade Federal de Minas Gerais, como se dá a distribuição do Conceito Enade Faixa para os cursos avaliados?
-library(dplyr); library(ggplot2)
-
-df_ufmg <- df_enade %>% 
-  filter(`Sigla da IES` == "UFMG")
-
-df_ufmg[9, 3] = "ADMINISTRAÇÃO MONTES CLAROS" #Altera o nome do curso de Administração de Montes Claros, de modo a não permitir a sobreposição desse valor com o curso de Adminsitração de Belo Horizonte
-
-df_ufmg %>% 
-  ggplot() +
-  geom_col(aes(x = reorder(`Área de Avaliação`, -`Conceito Enade (Faixa)`), y = `Conceito Enade (Faixa)`), width = .25) +
-  theme(axis.text.x = element_text(size = 4, angle = 90, vjust = 0.5, hjust = 1))+
-  labs(title = "Conceito Enade UFMG", x = "Área de Avaliação")
-
 ```
 
 ### Descrição da base de dados
@@ -103,7 +89,22 @@ A partir da visualização acima, percebeu-se que a organização acadêmica que
 A **segunda pergunta** analisada questiona acerca de como se dá a distribuição do Conceito Enade (Faixa) para os cursos avaliados da Universidade Federal de Minas Gerais (UFMG).
 O gráfico obtido a partir da manipulação dos dados encontra-se a seguir:
 
-![Figura 2: Conceito Enade UFMG](/cloud/project/distribuicao_ufmg.jpg)
+```{r pergunta2, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr); library(ggplot2)
+
+df_enade2 <- df_enade %>% 
+  filter(`Sigla da IES` == "UFMG")
+
+df_enade2[9, 3] = "ADMINISTRAÇÃO MONTES CLAROS" #Altera o nome do curso de Administração de Montes Claros, de modo a não permitir a sobreposição desse valor com o curso de Adminsitração de Belo Horizonte
+
+df_enade2 %>% 
+  ggplot() +
+  geom_col(aes(x = reorder(`Área de Avaliação`, -`Conceito Enade (Faixa)`), y = `Conceito Enade (Faixa)`), width = .25) +
+  theme(axis.text.x = element_text(size = 4, angle = 90, vjust = 0.5, hjust = 1))+
+  labs(title = "Conceito Enade UFMG", x = "Área de Avaliação")
+
+```
+
 Figura 2: Conceito Enade UFMG
 
 A base de dados apresenta o Conceito Enade (Faixa) para doze diferentes áreas de avaliação: Administração (Campus Belo Horizonte), Administração (Campus Montes Claros), Administração Pública, Ciências Contábeis, Ciências Econômicas, Comunicação Social – Jornalismo, Comunicação Social – Publicidade e Propaganda, Design, Direito, Psicologia, Relações Internacionais e Turismo. Destes, 8 cursos (66,67%) obtiveram nota máxima (5) no conceito Enade, enquanto os outros 4 cursos (33,33%) obtiveram nota 4. Dessa forma, observa-se que a UFMG alcançou notas altas na avaliação realizada.

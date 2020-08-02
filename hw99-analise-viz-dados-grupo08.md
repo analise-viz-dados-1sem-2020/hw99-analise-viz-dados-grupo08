@@ -92,7 +92,8 @@ distribuição do Conceito Enade (Faixa) para os cursos avaliados da
 Universidade Federal de Minas Gerais (UFMG). O gráfico obtido a partir
 da manipulação dos dados encontra-se a seguir:
 
-![Figura 2: Conceito Enade UFMG](/cloud/project/distribuicao_ufmg.jpg)
+![](hw99-analise-viz-dados-grupo08_files/figure-gfm/pergunta2-1.png)<!-- -->
+
 Figura 2: Conceito Enade UFMG
 
 A base de dados apresenta o Conceito Enade (Faixa) para doze diferentes
