@@ -54,6 +54,8 @@ Além disso, a presente base de dados fornece informações que abarcam a área 
 
 A **primeira pergunta** objetiva verificar qual das diferentes organizações acadêmicas observadas possui maior média de Conceito Enade Contínuo. Para isso foi construído o gráfico a seguir:
 
+**Figura 1: Média do Enade Contínuo por organização acadêmica**
+
 ```{r organizaçãoacademica, message=FALSE, warning=FALSE, echo=FALSE}
 
 install.packages("RColorBrewer")
@@ -76,11 +78,8 @@ df_enade1 %>%
   ggplot(aes(x = media_continuo, y = `Organização Acadêmica`)) + 
   geom_col(fill = cores)  +
   labs(x = "Média do Conceito Enade Contínuo",
-       y = "Organização acadêmica", 
-       title = "Média do Enade Contínuo por organização acadêmica")
+       y = "Organização acadêmica")
 ```
-
-**Figura 1: Média do Enade Contínuo por organização acadêmica**
 
 
 A partir da visualização acima, percebeu-se que a organização acadêmica que possui maior média de Conceito Enade Contínuo é **Centro Federal de Educação Tecnológica (aproximamente 4.5)** seguida em ordem descrescente dessa mesma média por: Instituto Federal de Educação, Ciência e Tecnologia (3); Universidade (2,7); Centro Universitário (2,4); Faculdade (2,2). 
@@ -89,6 +88,8 @@ A partir da visualização acima, percebeu-se que a organização acadêmica que
 
 A **segunda pergunta** analisada questiona acerca de como se dá a distribuição do Conceito Enade (Faixa) para os cursos avaliados da Universidade Federal de Minas Gerais (UFMG).
 O gráfico obtido a partir da manipulação dos dados encontra-se a seguir:
+
+**Figura 2: Conceito Enade UFMG**
 
 ```{r pergunta2, echo=FALSE, message=FALSE, warning=FALSE}
 library(dplyr); library(ggplot2)
@@ -102,15 +103,15 @@ df_enade2 %>%
   ggplot() +
   geom_col(aes(x = reorder(`Área de Avaliação`, -`Conceito Enade (Faixa)`), y = `Conceito Enade (Faixa)`), width = .25) +
   theme(axis.text.x = element_text(size = 4, angle = 90, vjust = 0.5, hjust = 1))+
-  labs(title = "Conceito Enade UFMG", x = "Área de Avaliação")
+  labs(x = "Área de Avaliação")
 
 ```
-
-**Figura 2: Conceito Enade UFMG**
 
 A base de dados apresenta o Conceito Enade (Faixa) para doze diferentes áreas de avaliação: Administração (Campus Belo Horizonte), Administração (Campus Montes Claros), Administração Pública, Ciências Contábeis, Ciências Econômicas, Comunicação Social – Jornalismo, Comunicação Social – Publicidade e Propaganda, Design, Direito, Psicologia, Relações Internacionais e Turismo. Destes, 8 cursos (66,67%) obtiveram nota máxima (5) no conceito Enade, enquanto os outros 4 cursos (33,33%) obtiveram nota 4. Dessa forma, observa-se que a UFMG alcançou notas altas na avaliação realizada.
 
 A **terceira pergunta** se refere ao comparativo do Conceito Enade Faixa, entre as duas modalidades de ensino (a distância/presencial), no curso de administração pública. A priori, para se esboçar um gráfico de distribuição, torna-se mais apropriado utilizar a variável Conceito Enade Contínuo, como foi feito no gráfico abaixo: 
+
+**Figura 3: Distribuição Conceito Enade (Contínuo) no curso de Adm. Pública**
 
 ```{r, pergunta3, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -122,15 +123,14 @@ df_C %>%
   ggplot(aes(x = `Área de Avaliação`, y = `Conceito Enade (Contínuo)`, color = `Modalidade de Ensino`)) +
   geom_point() +
   labs(x = "Área de Avaliação", 
-       y = "Conceito Enade (Contínuo)",
-       title = "Distribuição Conceito Enade (Contínuo) no curso de Adm. Pública")
+       y = "Conceito Enade (Contínuo)")
 ```
-
-**Figura 3: Distribuição Conceito Enade (Contínuo) no curso de Adm. Pública**
 
 Apesar de possuir alguns pontos sobrepostos na região central, consegue-se perceber, com clareza, que existe uma tendência da modalidade de ensino presencial, no curso de Administração Pública, possuir maiores pontuações no Conceito Enade (Contínuo) do que a modalidade de ensino à distância, haja vista que a grande maioria dos cursos à distância estão concentrados na metade para baixo do gráfico e a grande maioria dos cursos presenciais estão concentrados na metade para cima.
 
 Contudo, uma vez que a intenção inicial era manipular dados do Conceito Enade (Faixa), pode-se, pois, calcular a média obtida, para esse conceito, para cada uma das duas modalidades de ensino. O gráfico abaixo ilustra os resultados obtidos:
+
+**Figura 4: Média do Enade (Faixa) por modalidade de ensino no curso de Adm. Pública**
 
 ```{r pergunta3.1, message=FALSE, warning=FALSE, echo=FALSE}
 
@@ -148,15 +148,14 @@ df_A %>%
   ggplot(aes(x = `Modalidade de Ensino`, y = n)) + 
   geom_col(color = "black", fill = "#1B9E77")  +
   labs(x = "Modalidade de Ensino",
-       y = "Média do Conceito Enade (Faixa)", 
-       title = "Média Enade (Faixa) por modalidade de ensino no curso de Adm. Pública")
+       y = "Média do Conceito Enade (Faixa)")
 ```
-
-**Figura 4: Média do Enade (Faixa) por modalidade de ensino no curso de Adm. Pública**
 
 Vê-se que existe, de fato, uma diferença considerável nas médias das pontuações obtidas para cada uma das modalidades de ensino, correspondendo a média do Conceito Enade (Faixa) para a modalidade à distância 2,03 e para modalidade presencial 3,44. 
 
 A fim de investigar se essa tendência, observada para o curso de Administração Pública, também se aplica para os demais cursos apresentados na tabela, foi construído o gráfico a seguir:
+
+**Figura 5: Média do Enade (Faixa) por modalidade de ensino nos diversos cursos**
 
 ```{r pergunta3.2, message=FALSE, warning=FALSE, echo=FALSE}
 
@@ -167,20 +166,19 @@ df_B <- df_enade %>%
   summarise(n = mean(`Conceito Enade (Faixa)`))
 
 df_B %>% 
-  ggplot(aes(x = `Modalidade de Ensino`, y = n)) + 
+  ggplot(aes(y = `Modalidade de Ensino`, x = n)) + 
   geom_col(color = "black", fill = "#1B9E77")  +
   facet_wrap("`Área de Avaliação`") +
-  labs(x = "Modalidade de Ensino",
-       y = "Média do Conceito Enade (Faixa)", 
-       title = "Média Enade (Faixa) por modalidade de ensino")
+  labs(y = "Modalidade de Ensino",
+       x = "Média do Conceito Enade (Faixa)")
 ```
 
-**Figura 5: Média do Enade (Faixa) por modalidade de ensino nos diversos cursos**
-
-Como pode ser visto, a mesma tendência se aplica para os cursos de Relações Internacionais (média de 2,00 para modalidade à distância e de 3,17 para presencial) e Serviço Social (média de 1,90 para modalidade à distância e de 2,98 para presencial). Em contrapartida, os cursos de Direito (média de 4,00 para modalidade à distância e de 2,87 para presencial) e Ciências Econômicas (média de 3,29 para modalidade à distância e de 2,62 para presencial) seguem o caminho inverso, ou seja, há uma maior pontuação para os cursos à distância ante os presenciais. Os demais cursos não possuem diferenças consideráveis entre as médias, já que as colunas de seus respectivos gráficos possuem alturas similares.
+Como pode ser visto, a mesma tendência se aplica para os cursos de Relações Internacionais (média de 2,00 para modalidade à distância e de 3,17 para presencial) e Serviço Social (média de 1,90 para modalidade à distância e de 2,98 para presencial). Em contrapartida, os cursos de Direito (média de 4,00 para modalidade à distância e de 2,87 para presencial) e Ciências Econômicas (média de 3,29 para modalidade à distância e de 2,62 para presencial) seguem o caminho inverso, ou seja, há uma maior pontuação para os cursos à distância ante os presenciais. Os demais cursos não possuem diferenças consideráveis entre as médias, já que as colunas de seus respectivos gráficos possuem tamanhos similares.
 
 A **quarta pergunta** diz respeito à investigação se existe alguma correlação entre a proporção de participantes no exame (concluintes participantes/concluintes inscritos) e o Conceito Enade Faixa.
 O gráfico a seguir objetiva responder tal questionamento:
+
+**Figura 6: Percentual de participação e Conceito Enade Faixa**
 
 ```{r pergunta4, echo=FALSE, message=FALSE, warning=FALSE}
 library(ggplot2)
@@ -193,16 +191,15 @@ df_enade4 %>%
   ggplot(aes(x = `Conceito Enade (Faixa)`, y = prop_participantes)) +
   geom_point() +
   labs(x = "Conceito Enade Faixa", 
-       y = "Percentual de participantes",
-       title = "Percentual de participação e Conceito Enade Faixa")
+       y = "Percentual de participantes")
 
 ```
-
-**Figura 6: Percentual de participação e Conceito Enade Faixa**
 
 Pode-se observar que essa visualização apresenta alguns problemas, uma vez que o Conceito Enade Faixa não envolve números decimais, o que acarreta a concentração dos pontos na linha verticalmente. Entretanto, pode-se observar que um menor percentual de participantes (entre 0% e 25%) não está, necessariamente, apenas relacionado a notas baixas como a nota 1. Nota-se que os menores percentuais de participação estão associados às notas 2, 3 e 4 com destaque para a 3 e a 4 (maiores concentrações de pontos abaixo de 25%)
 
 Com o objetivo de melhorar a visualização e tentar extrair mais informações dos dados, abaixo se encontra outro gráfico que não estava no escopo inicial das perguntas, porém foi uma alternativa encontrata visando compreender melhor os dados. Nesse caso, foi utilizado o Conceito Enade Contínuo como um dos eixos.
+
+**Figura 7: Proporção de participantes e Conceito Enade Contínuo**
 
 ```{r pergunta4.1, echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -210,13 +207,12 @@ df_enade4 %>%
   ggplot(aes(x = `Conceito Enade (Contínuo)`, y = prop_participantes)) +
   geom_point() +
   labs(x = "Conceito Enade Contínuo", 
-       y = "Percentual de participantes",
-       title = "Proporção de participantes e Conceito Enade Contínuo")
+       y = "Percentual de participantes")
 ```
 
-**Figura 7: Proporção de participantes e Conceito Enade Contínuo**
-
 Nesse gráfico, o que se pode perceber é a maior concentração dos pontos entre os Conceitos 1 e 3 e acima do percentual de 75% de participação. Dos Conceitos 3 a 4 também há elevada concentração de pontos, porém em menor medida comparado ao intervalo de 1 a 3, de modo que uma das razões que pode estar relacionada à maior quantidade de pontos estarem entre os Conceitos 1 a 3 seria o fato da maioria dos cursos obterem notas nesse intervalo. Além disso, nota-se que há cursos avaliados em todo o intervalo do Conceito Enade Contínuo.
+
+**Figura 8: Participação e Enade Contínuo por Organização Acadêmica**
 
 ```{r, pergunta4.2, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -225,11 +221,8 @@ df_enade4 %>%
   geom_point() +
   facet_wrap("`Organização Acadêmica`") +
   labs(x = "Conceito Enade Contínuo", 
-       y = "Percentual de participantes",
-       title = "Participação e Enade Contínuo por Organização Acadêmica")
+       y = "Percentual de participantes")
 ```
-
-**Figura 8: Participação e Enade Contínuo por Organização Acadêmica**
 
 Esse gráfico também não estava envolvido nas perguntas iniciais, mas devido à possibilidade de abordar essa questão de diversos modos, tal visualização foi construída. O que se pode perceber a partir dessa é que, em geral, faculdade e centro universitário possuem mais pontos em menores percentuais de participação. Vale ressaltar que os Institutos Federais de Educação, Ciência e Tecnologia e os Centros Federais de Educação Tecnológica existem em menor quantidade comparada às outras formas de organização acadêmica além de apresentarem maiores níveis de participação, principalmente no caso dos segundos.
 
